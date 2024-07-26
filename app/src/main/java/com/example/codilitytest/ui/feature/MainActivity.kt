@@ -1,18 +1,18 @@
 package com.example.codilitytest.ui.feature
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
-import android.provider.CalendarContract.Colors
-import android.view.View
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,8 +25,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.codilitytest.model.DataModel
+import androidx.compose.ui.unit.sp
+import com.example.codilitytest.model.DataModelResponse
+import com.example.codilitytest.ui.feature.data.DataModel
 import com.example.codilitytest.ui.theme.CodilityTestTheme
 import com.example.kotlindemo.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,6 +64,7 @@ fun MainScreen(viewModel: MainActivityViewModel) {
         verticalArrangement = Arrangement.Top
     ) {
         Button(onClick = {
+            Log.d("data","clicked")
             viewModel.fetchDetailData()
         }) {
             Text("Fetch Data")
@@ -86,18 +92,47 @@ fun DetailItem(item: DataModel) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-
-
     ) {
-        Column {
-            Text(
-                text = "Scheme Code " + item.schemeCode.toString(), // Customize this to display the data properly
-                modifier = Modifier.padding(16.dp)
-            )
-            Text(
-                text = "Scheme Name " + item.schemeName.toString(), // Customize this to display the data properly
-                modifier = Modifier.padding(16.dp)
-            )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Row(
+                modifier = Modifier,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    text = "Code: ",
+                    color = Color.Black,
+                    modifier = Modifier.padding(end = 4.dp),
+                    style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                )
+
+                item.schemeCode?.let { Text(text = it,
+                    color = Color.DarkGray,
+                    style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 16.sp)) }
+            }
+            Spacer(modifier = Modifier.height(2.dp))
+            Row(
+                modifier = Modifier,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    text = "Name: ",
+                    color = Color.Black,
+                    modifier = Modifier.padding(end = 4.dp),
+                    style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                )
+
+                item.schemeName?.let {
+                    Text(
+                        text = it, color = Color.DarkGray,
+                    style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+                    )
+                }
+            }
         }
+
     }
 }

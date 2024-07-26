@@ -1,7 +1,7 @@
 package com.example.codilitytest.repository
 
 import com.example.codilitytest.api.ApiService
-import com.example.codilitytest.model.DataModel
+import com.example.codilitytest.model.DataModelResponse
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -27,8 +27,8 @@ class DetailRepositoryTest {
     fun fetchDetailData_success() {
         // Mock response data
         val mockData = listOf(
-            DataModel(1, "Item 1"),
-            DataModel(2, "Item 2")
+            DataModelResponse(1, "Item 1"),
+            DataModelResponse(2, "Item 2")
         )
 
         // Mock ApiService response

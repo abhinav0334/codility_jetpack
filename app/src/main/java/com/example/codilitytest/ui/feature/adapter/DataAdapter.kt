@@ -3,10 +3,10 @@ package com.example.codilitytest.ui.feature.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.codilitytest.model.DataModel
+import com.example.codilitytest.model.DataModelResponse
 import com.example.codilitytest.databinding.ItemLayoutBinding
 
-class DataAdapter(private val items: List<DataModel>) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter(private val items: List<DataModelResponse>) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,7 +21,7 @@ class DataAdapter(private val items: List<DataModel>) : RecyclerView.Adapter<Dat
 
     class ViewHolder(private val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DataModel) {
+        fun bind(item: DataModelResponse) {
             binding.textViewTitle.text = item.schemeCode.toString()
             binding.textViewDescription.text = item.schemeName
         }
