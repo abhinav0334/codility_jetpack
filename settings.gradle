@@ -1,19 +1,6 @@
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
-        maven { url 'https://jitpack.io' }
-    }
-
-}
-rootProject.name = "CodilityTest"
+rootProject.name = "Codility"
 include ':app'
+//include ':core'
+include ':core'
+include ':features:posts'
+include ':features:auth'
