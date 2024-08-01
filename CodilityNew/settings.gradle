@@ -1,0 +1,6 @@
+rootProject.name = "Codility"
+include ':app'
+//include ':core'
+include ':core'
+include ':features:posts'
+include ':features:auth'
